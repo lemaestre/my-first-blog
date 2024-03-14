@@ -12,12 +12,12 @@
                 </div>
             </div>
             {% if post.published_date %}
-        <div class="date">
-            {{ post.published_date }}
-        </div>
-        {% else %}
-        <a class="btn btn-info" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
-        {% endif %}
+             <div class="date">
+                 {{ post.published_date }}
+            </div>
+            {% else %}
+                <a class="btn btn-info" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
+            {% endif %}
         </div>
         
     {% endfor %}
