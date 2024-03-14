@@ -23,7 +23,9 @@
             <a href="{% url 'post_new' %}" class="top-menu">
                 {% include './icons/plus-square.svg' %}
             </a>
-            <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
+            <a href="{% url 'post_draft_list' %}" class="top-menu">
+                {% include './icons/droplet-half.svg' %}
+            </a>
             {% endif %}
             <h1><a href="/">Udag's blog</a></h1>
           </div>
