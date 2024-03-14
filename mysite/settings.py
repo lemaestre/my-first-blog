@@ -148,8 +148,10 @@ CKEDITOR_5_CONFIGS = {
             "bulletedList",
             "numberedList",
             "blockQuote",
-            "imageUpload"
+            "imageUpload",
+            "alignment"
         ],
+    
     },
     "comment": {
         "language": {"ui": "en", "content": "en"},
@@ -197,6 +199,7 @@ CKEDITOR_5_CONFIGS = {
             "bulletedList",
             "numberedList",
             "todoList",
+            "alignment",
             "|",
             "blockQuote",
             "insertImage",
