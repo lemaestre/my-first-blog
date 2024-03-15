@@ -20,6 +20,10 @@ h3,
 h4 {
     font-family: 'Lobster';
 }
+a {
+    text-decoration: none;
+    color: rgb(0, 105, 111);
+  }
 
 .date {
     color: #828282;
