@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'django_ckeditor_5',
+    'django_mathjax',
 ]
 
 MIDDLEWARE = [
@@ -70,7 +71,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
-
+MATHJAX_ENABLED=True
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -149,9 +150,9 @@ CKEDITOR_5_CONFIGS = {
             "numberedList",
             "blockQuote",
             "imageUpload",
-            "alignment"
+            "alignment",
+            "fontsize"
         ],
-    
     },
     "comment": {
         "language": {"ui": "en", "content": "en"},
@@ -179,6 +180,7 @@ CKEDITOR_5_CONFIGS = {
             "|",
             "blockQuote",
         ],
+    
         "toolbar": [
             "heading",
             "codeBlock",
@@ -204,15 +206,16 @@ CKEDITOR_5_CONFIGS = {
             "blockQuote",
             "insertImage",
             "|",
-            "fontSize",
+            "fontsize",
             "fontFamily",
             "fontColor",
             "fontBackgroundColor",
             "mediaEmbed",
             "removeFormat",
             "insertTable",
-            "sourceEditing",
+            "sourceEditing"
         ],
+        
         "image": {
             "toolbar": [
                 "imageTextAlternative",
@@ -277,6 +280,7 @@ CKEDITOR_5_CONFIGS = {
                 },
             ]
         },
+        
         "list": {
             "properties": {
                 "styles": True,
