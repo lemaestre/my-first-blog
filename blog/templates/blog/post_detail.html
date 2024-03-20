@@ -32,7 +32,7 @@
     </article>
 
     <hr>
-    <a class="btn btn-warning" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a>
+    <p><a class="btn btn-warning" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a></p>
     {% for comment in post.comments.all %}
         {% if user.is_authenticated or comment.approved_comment %}
         <div class="comment">
