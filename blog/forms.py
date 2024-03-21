@@ -25,3 +25,5 @@ class CommentForm(forms.ModelForm):
             'author': forms.TextInput(attrs={'class':'form-control','placeholder': 'Name'}),
             'text': forms.Textarea(
                 attrs={'class':'form-control','placeholder': 'Comments are moderated.'})}
+        
+
