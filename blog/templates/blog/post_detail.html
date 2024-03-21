@@ -31,8 +31,13 @@
     </article>
 
     <hr>
-
-    <p><a class="btn btn-warning" href="{% url 'add_comment_to_post' pk=post.pk %}" target="_blank">Add comment</a></p>
+    <p><strong>Comments</strong></p>
+    <form method="POST" class="post-form" action="{% url 'add_comment_to_post' pk=post.pk %}">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit" class="save btn btn-warning">Add comment</button>
+    </form>
+    <br>
     {% for comment in post.comments.all %}
         {% if user.is_authenticated or comment.approved_comment %}
         <div class="comment">

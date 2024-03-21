@@ -5,6 +5,7 @@ from .models import Post, Comment
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm, CommentForm
 from django.contrib.auth.decorators import login_required
+from django.views.generic import DetailView
 
 
 # Create your views here.
@@ -113,3 +114,10 @@ def comment_remove(request, pk):
     comment.delete()
     return redirect('post_detail', pk=comment.post.pk)
 
+class PostDetailView(DetailView):
+        model = Post
+    
+        def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            context['comment_form'] = CommentForm()  # Your comment form
+            return context
