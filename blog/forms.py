@@ -20,4 +20,8 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment
-        fields = ('author', 'text',)
+        fields = ('author','text')
+        widgets = {
+            'author': forms.TextInput(attrs={'class':'form-control','placeholder': 'Name'}),
+            'text': forms.Textarea(
+                attrs={'class':'form-control','placeholder': 'Comments are moderated.'})}

@@ -1,6 +1,6 @@
 {% extends 'blog/base.html' %}
-
 {% block content %}
+{% load crispy_forms_tags %}
     <article class="post">
         <aside class="actions">
             {% if user.is_authenticated %}
@@ -28,11 +28,11 @@
             {% else %}
             <a class="btn btn-info" href="{% url 'post_publish' pk=post.pk %}">Publish</a>
             {% endif %}
-        
     </article>
 
     <hr>
-    <p><a class="btn btn-warning" href="{% url 'add_comment_to_post' pk=post.pk %}">Add comment</a></p>
+
+    <p><a class="btn btn-warning" href="{% url 'add_comment_to_post' pk=post.pk %}" target="_blank">Add comment</a></p>
     {% for comment in post.comments.all %}
         {% if user.is_authenticated or comment.approved_comment %}
         <div class="comment">
@@ -54,4 +54,5 @@
     {% empty %}
         <p>No comments here yet :(</p>
     {% endfor %}
+    
 {% endblock %}
