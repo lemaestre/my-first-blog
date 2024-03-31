@@ -1,7 +1,7 @@
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils import timezone
-from .models import Post
+from .models import Post, Category
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
@@ -36,7 +36,7 @@ def post_new(request):
 def post_edit(request, slug):
     post = get_object_or_404(Post, slug=slug)
     if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user
@@ -79,7 +79,7 @@ def post_draft_detail(request, slug):
 def draft_edit(request, slug):
     post = get_object_or_404(Post, slug=slug)
     if request.method == "POST":
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user

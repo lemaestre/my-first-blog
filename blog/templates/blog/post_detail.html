@@ -14,8 +14,12 @@
         </aside>
 
         <h2>{{ post.title }}</h2>
-            
+        <small>in {{ post.category }}</small>
+
             <div class="card-body">
+                {% if post.head_image %}
+                <img src="{{ post.head_image.url }}">
+                {% endif %}
                 <!-- ck ck-content is ckeditor5 class -->
                 <div class="ck ck-content">
                     {{ post.text|safe}}

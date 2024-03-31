@@ -14,20 +14,24 @@
         </aside>
 
         <h2>{{ post.title }}</h2>
-            
-            <div class="card-body">
-                <!-- ck ck-content is ckeditor5 class -->
-                <div class="ck ck-content">
-                    {{ post.text|safe}}
-                </div>
-            </div>
-            {% if post.published_date %}
-            <div class="date">
-                {{ post.published_date }}
-            </div>
-            {% else %}
-            <a class="btn btn-info" href="{% url 'post_publish' slug=post.slug %}">Publish</a>
+        <small>in {{ post.category }}</small>
+
+        <div class="card-body">
+            {% if post.head_image %}
+            <img src="{{ post.head_image.url }}">
             {% endif %}
+            <!-- ck ck-content is ckeditor5 class -->
+            <div class="ck ck-content">
+                {{ post.text|safe}}
+            </div>
+        </div>
+        {% if post.published_date %}
+        <div class="date">
+            {{ post.published_date }}
+        </div>
+        {% else %}
+        <a class="btn btn-info" href="{% url 'post_publish' slug=post.slug %}">Publish</a>
+        {% endif %}
         
     </article>
 {% endblock %}

@@ -5,7 +5,7 @@
     <div class="container mt-5">
         <form method="post" enctype="multipart/form-data"> 
             {% csrf_token %} 
-            {{ form.media}}
+            {{ form.media }}
             {% for field in form %}
             <div class="form-group">
                 <div><label for="{{ field.id_for_label }}" class="text-dark">{{ field.label }}: </label></div>
