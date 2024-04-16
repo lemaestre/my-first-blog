@@ -4,34 +4,46 @@
     <article class="post">
         <aside class="actions">
             {% if user.is_authenticated %}
-            <a class="btn btn-default" href="{% url 'draft_edit' slug=post.slug %}">
-               {% include './icons/pencil-square.svg' %}
-            </a>
-            <a class="btn btn-default" href="{% url 'post_remove' slug=post.slug %}">
-                {% include './icons/trash3.svg' %}
-            </a>
+                <a class="btn btn-default" href="{% url 'draft_edit' slug=post.slug %}">
+                    {% include './icons/pencil-square.svg' %}
+                </a>
+                <a class="btn btn-default" href="{% url 'post_remove' slug=post.slug %}">
+                    {% include './icons/trash3.svg' %}
+                </a>
             {% endif %}
         </aside>
 
-        <h2>{{ post.title }}</h2>
-        <small>in {{ post.category }}</small>
+        <div class="post-title">
+            <h2>{{ post.title }}</h2>
+            {% if post.category %}
+                <small>in {{ post.category }}</small>
+            {% endif %}
+        </div>   
+
+        <div class="head-image">
+            {% if post.head_image %}
+                <img src="{{ post.head_image.url }}"> <br>
+                {% if post.caption %}
+                <small> {{post.caption}} </small>
+                {% endif %}
+            {% endif %}
+        </div>
 
         <div class="card-body">
-            {% if post.head_image %}
-            <img src="{{ post.head_image.url }}">
-            {% endif %}
             <!-- ck ck-content is ckeditor5 class -->
             <div class="ck ck-content">
                 {{ post.text|safe}}
             </div>
         </div>
+
         {% if post.published_date %}
         <div class="date">
             {{ post.published_date }}
         </div>
         {% else %}
-        <a class="btn btn-info" href="{% url 'post_publish' slug=post.slug %}">Publish</a>
+            <a class="btn btn-info" href="{% url 'post_publish' slug=post.slug %}">Publish</a>
         {% endif %}
-        
+
     </article>
+
 {% endblock %}

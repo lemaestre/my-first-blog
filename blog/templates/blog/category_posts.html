@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<h2>Posts in {{category}}</h2>
+<br>
+
+{% for post in posts %}
+<article class="post">
+    <time class="date">
+        {{ post.published_date }}
+    </time>
+    <h3><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></h3>
+    
+        <div class="card-body">
+            <!-- ck ck-content is ckeditor5 class -->
+            <div class="ck ck-content">
+                {{post.snippet|safe|truncatewords:"100" }}
+                <a href="{% url 'post_detail' slug=post.slug %}"> See more</a>
+            </div>
+        </div>
+</article>
+
+
+{% endfor %}
+{% endblock %}

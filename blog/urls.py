@@ -14,6 +14,9 @@ urlpatterns = [
     path('post/<slug>/unpublish/', views.post_unpublish, name='post_unpublish'),
     path('drafts/<slug>/', views.post_draft_detail, name='post_draft_detail'),
     path('drafts/<slug:slug>/edit/', views.draft_edit, name='draft_edit'),
+    path('category/<slug:name>', views.category_posts, name='category_posts'),
+    
+
 
 ]
 

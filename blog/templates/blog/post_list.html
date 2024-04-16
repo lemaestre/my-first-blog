@@ -9,11 +9,8 @@
             <h2><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></h2>
             
                 <div class="card-body">
-                    <!-- ck ck-content is ckeditor5 class -->
-                    <div class="ck ck-content">
-                        {{post.text|safe|truncatewords:"100" }}
+                        {{post.snippet|safe|truncatewords:"100" }}
                         <a href="{% url 'post_detail' slug=post.slug %}"> See more</a>
-                    </div>
                 </div>
         </article>
     {% endfor %}
