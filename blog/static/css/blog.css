@@ -1,9 +1,11 @@
 .page-header {
-    background-color: #329ba5;
+    background-color: hsl(185, 53%, 42%);
     margin-top: 0;
     margin-bottom: 40px;
     padding: 20px 20px 20px 40px;
 }
+
+.post-title {margin-bottom: 50px;}
 
 .page-header h1,
 .page-header h1 a,
@@ -76,4 +78,20 @@ a {
 
 .comment {
     margin: 20px 0px 20px 20px;
+}
+
+.ck-content .image {
+    display: table;
+    clear: both;
+    text-align: center;
+    min-width: 50px;
+}
+/* @ckeditor/ckeditor5-image/theme/image.css */
+.ck-content .image img {
+    display: block;
+    margin-top: -90px ;
+    margin-bottom: 0 px ;
+    max-width: 100%;
+    min-width: 100%;
+    height: auto;
 }

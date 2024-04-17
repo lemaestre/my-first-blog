@@ -22,10 +22,8 @@
 
         <div class="head-image">
             {% if post.head_image %}
-                <img src="{{ post.head_image.url }}"> <br>
-                {% if post.caption %}
-                <small> {{post.caption}} </small>
-                {% endif %}
+                <img src="{{ post.head_image.url }}"> 
+                {{ post.head_image|safe}}<br>
             {% endif %}
         </div>
 

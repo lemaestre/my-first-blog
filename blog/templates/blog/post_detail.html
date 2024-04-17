@@ -20,12 +20,10 @@
             {% endif %}
         </div>   
         <br>
-        <div class="head-image">
+        <div class="ck ck-content">
             {% if post.head_image %}
-                <img src="{{ post.head_image.url }}"> <br>
-                {% if post.caption %}
-                <small> {{post.caption}} </small>
-                {% endif %}
+                <img src="{{ post.head_image.url }}"> 
+                {{ post.head_image|safe }}
             {% endif %}
         </div>
 

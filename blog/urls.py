@@ -15,6 +15,7 @@ urlpatterns = [
     path('drafts/<slug>/', views.post_draft_detail, name='post_draft_detail'),
     path('drafts/<slug:slug>/edit/', views.draft_edit, name='draft_edit'),
     path('category/<slug:name>', views.category_posts, name='category_posts'),
+    path('categories/', views.category_list, name='category_list'),
     
 
 

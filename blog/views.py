@@ -91,5 +91,9 @@ def draft_edit(request, slug):
 
 def category_posts(request, name):
     category = Category.objects.get(name=name)
-    posts = Post.objects.filter(category=category, published_date__lte=timezone.now()) 
+    posts = Post.objects.filter(category=category, published_date__lte=timezone.now()).order_by('-published_date')  
     return render(request, 'blog/category_posts.html', {'posts':posts, 'category':category})
+
+def category_list(request):
+    categories = Category.objects.all()
+    return render(request, 'blog/category_list.html', {'categories':categories})

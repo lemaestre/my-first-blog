@@ -145,18 +145,38 @@ customColorPalette = [
 CKEDITOR_5_CONFIGS = {
     "default": {
         "toolbar": [
-            "heading",
+            "insertImage",
+            "imageTextAlternative",
+            "mediaEmbed",
             "|",
-            "bold",
-            "italic",
-            "link",
-            "bulletedList",
-            "numberedList",
-            "blockQuote",
-            "imageUpload",
-            "alignment",
-            "fontsize"
+            "imageStyle:alignLeft",
+            "imageStyle:alignRight",
+            "imageStyle:alignCenter",
+            "imageStyle:side",
+            "|",
+            "toggleImageCaption",
         ],
+        "image": {
+        "toolbar": [
+            "imageTextAlternative",
+            "|",
+            "imageStyle:alignLeft",
+            "imageStyle:alignRight",
+            "imageStyle:alignCenter",
+            "imageStyle:side",
+            "|",
+            "toggleImageCaption",
+            "|"
+        ],
+        "styles": [
+            "full",
+            "side",
+            "alignLeft",
+            "alignRight",
+            "alignCenter",
+        ],
+        },
+  
     },
     "comment": {
         "language": {"ui": "en", "content": "en"},

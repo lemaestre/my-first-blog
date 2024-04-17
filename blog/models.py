@@ -18,7 +18,7 @@ class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
     title = models.CharField('Title', max_length=200)
-    head_image = models.ImageField('Cover Image', upload_to = 'thumbnails', blank = True, null=True)
+    head_image = CKEditor5Field('Cover Image', config_name='default', blank = True, null=True)
     caption = models.CharField('Caption', max_length=200, blank=True, null=True)
     text = CKEditor5Field('Body', config_name='extends')
     slug = models.SlugField(unique=True, null=True)
