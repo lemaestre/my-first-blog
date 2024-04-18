@@ -6,7 +6,7 @@
 }
 
 .content {
-    margin: auto; max-width: 100%; margin-top: 10px;
+    margin: auto; max-width: 80%; margin-top: 10px;
   }
 
 .post-body {margin-top: 20px;}
@@ -31,8 +31,10 @@ a {
     color: rgb(0, 105, 111);
   }
 
+.post-date {float: right; }
+
 .date {
-    color: #828282; max-width: 75%; margin: auto; float: right;
+    color: #828282; max-width: 75%; margin: auto;;
 }
 
 .save {
@@ -84,6 +86,7 @@ a {
     margin: auto; max-width: 100%; text-align: left;
 }
 
+
 .ck-content {justify-content:center}
 
 .ck-content .image {
@@ -101,3 +104,5 @@ a {
     min-width: 100%;
     height: auto;
 }
+
+#HCB_comment_box {max-width: 80%;margin: auto;}
