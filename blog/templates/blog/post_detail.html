@@ -13,42 +13,39 @@
             {% endif %}
         </aside>
 
-        <div class="post-title">
-            <h2>{{ post.title }}</h2>
+        <div class="content">
+            <div class="ck-content">
+            <!-- ck-content is ckeditor5 class -->
+            <h2>{{ post.title }}</h2> 
+
             {% if post.category %}
-                <small>in <a href="{% url 'category_posts' post.category %}">{{ post.category }} </a> </small>
+                <small> in <a href="{% url 'category_posts' post.category %}">{{ post.category }} </a> </small>
             {% endif %}
-        </div>   
-        <br>
-        <div class="ck ck-content">
+
             {% if post.head_image %}
                 <img src="{{ post.head_image.url }}"> 
                 {{ post.head_image|safe }}
             {% endif %}
-        </div>
-
-        <div class="card-body">
-            <!-- ck ck-content is ckeditor5 class -->
-            <div class="ck ck-content">
-                {{ post.text|safe}}
+  
+                {{ post.text|safe }}
+            <br>
+            {% if post.published_date %}
+                <div class="date">
+                    {{ post.published_date }}
+                </div>
+            {% else %}
+                <a class="btn btn-info" href="{% url 'post_publish' slug=post.slug %}">Publish</a>
+            {% endif %}
             </div>
         </div>
-           
-        {% if post.published_date %}
-            <div class="date">
-                {{ post.published_date }}
-            </div>
-        {% else %}
-            <a class="btn btn-info" href="{% url 'post_publish' slug=post.slug %}">Publish</a>
-        {% endif %}
-
+        
     </article>
 
-    <hr>
-    
-    <!-- begin wwww.htmlcommentbox.com -->
-    <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
-    <link rel="stylesheet" type="text/css" href="https://www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
-    <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="https://www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24JtE1H0HljdhAIqb%2FwzAtX0"+"&opts=16798&num=10&ts=1711084293660");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); </script>
-    <!-- end www.htmlcommentbox.com -->
+        <br>
+        <!-- begin wwww.htmlcommentbox.com -->
+        <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Comment Box</a> is loading comments...</div>
+        <link rel="stylesheet" type="text/css" href="https://www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
+        <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="https://www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24JtE1H0HljdhAIqb%2FwzAtX0"+"&opts=16798&num=10&ts=1711084293660");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); </script>
+        <!-- end www.htmlcommentbox.com -->
+
 {% endblock %}

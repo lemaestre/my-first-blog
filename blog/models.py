@@ -19,7 +19,6 @@ class Post(models.Model):
     category = models.ForeignKey(Category, null=True, on_delete=models.SET_NULL)
     title = models.CharField('Title', max_length=200)
     head_image = CKEditor5Field('Cover Image', config_name='default', blank = True, null=True)
-    caption = models.CharField('Caption', max_length=200, blank=True, null=True)
     text = CKEditor5Field('Body', config_name='extends')
     slug = models.SlugField(unique=True, null=True)
     snippet = models.TextField('Snippet', max_length=1000, blank=True, null=True)

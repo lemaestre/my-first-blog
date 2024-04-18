@@ -5,7 +5,9 @@
     padding: 20px 20px 20px 40px;
 }
 
-.post-title {margin-bottom: 50px;}
+.content {
+    margin: auto; max-width: 75%; margin-top: 10px;
+  }
 
 .page-header h1,
 .page-header h1 a,
@@ -28,7 +30,7 @@ a {
   }
 
 .date {
-    color: #828282;
+    color: #828282; max-width: 75%; margin: auto; float: right;
 }
 
 .save {
@@ -61,7 +63,7 @@ a {
 
 .post > .date,
 .post > .actions {
-    float: right;
+    float: right; max-width: 75%; margin:auto;
 }
 
 .btn-secondary,
@@ -77,8 +79,10 @@ a {
 }
 
 .comment {
-    margin: 20px 0px 20px 20px;
+    margin: auto; max-width: 75%; text-align: left;
 }
+
+.ck-content {justify-content:center}
 
 .ck-content .image {
     display: table;
@@ -89,9 +93,11 @@ a {
 /* @ckeditor/ckeditor5-image/theme/image.css */
 .ck-content .image img {
     display: block;
-    margin-top: -90px ;
+    margin-top: 0 px ;
     margin-bottom: 0 px ;
     max-width: 100%;
     min-width: 100%;
     height: auto;
 }
+
+#HCB_comment_box {max-width: 75%; margin: auto;}
