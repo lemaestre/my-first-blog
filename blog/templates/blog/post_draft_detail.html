@@ -13,34 +13,36 @@
             {% endif %}
         </aside>
 
-        <div class="post-title">
-            <h2>{{ post.title }}</h2>
-            {% if post.category %}
-                <small>in {{ post.category }}</small>
-            {% endif %}
-        </div>   
+        <div class="content">
+            <div class="ck-content">
+            <!-- ck-content is ckeditor5 class -->
+                <h2>{{ post.title }}</h2> 
 
-        <div class="head-image">
-            {% if post.head_image %}
-                <img src="{{ post.head_image.url }}"> 
-                {{ post.head_image|safe}}<br>
-            {% endif %}
-        </div>
+                {% if post.category %}
+                    <small> in <a href="{% url 'category_posts' post.category %}">{{ post.category }} </a> </small>
+                {% endif %}
 
-        <div class="card-body">
-            <!-- ck ck-content is ckeditor5 class -->
-            <div class="ck ck-content">
-                {{ post.text|safe}}
+                {% if post.head_image %}
+                    <img src="{{ post.head_image.url }}"> 
+                    {{ post.head_image|safe }}
+                {% else %}
+                <p style="margin-bottom:15px;"> </p>
+                {% endif %}
+    
+                    {{ post.text|safe }}
+
+                <br>
+
+                {% if post.published_date %}
+                    <div class="post-date">
+                        {{ post.published_date }}
+                    </div>
+                {% else %}
+                    <a class="btn btn-info" href="{% url 'post_publish' slug=post.slug %}">Publish</a>
+                {% endif %}
+                
             </div>
         </div>
-
-        {% if post.published_date %}
-        <div class="date">
-            {{ post.published_date }}
-        </div>
-        {% else %}
-            <a class="btn btn-info" href="{% url 'post_publish' slug=post.slug %}">Publish</a>
-        {% endif %}
 
     </article>
 

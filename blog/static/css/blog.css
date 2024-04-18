@@ -31,10 +31,10 @@ a {
     color: rgb(0, 105, 111);
   }
 
-.post-date {float: right; }
+.post-date {float: right; color: #828282; font-size: small;}
 
 .date {
-    color: #828282; max-width: 75%; margin: auto;;
+    color: #828282; margin: auto;;
 }
 
 .save {
@@ -105,4 +105,4 @@ a {
     height: auto;
 }
 
-#HCB_comment_box {max-width: 80%;margin: auto;}
+#HCB_comment_box {max-width: 80%;margin: auto; margin-bottom: 0px;}
