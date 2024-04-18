@@ -6,7 +6,7 @@
 }
 
 .content {
-    margin: auto; max-width: 80%; margin-top: 10px;
+    margin: auto; max-width: 80%;
   }
 
 .post-body {margin-top: 20px;}
@@ -105,4 +105,4 @@ a {
     height: auto;
 }
 
-#HCB_comment_box {max-width: 80%;margin: auto; margin-bottom: 0px;}
+#HCB_comment_box {max-width: 100%;margin: auto; margin-bottom: 0px;}
