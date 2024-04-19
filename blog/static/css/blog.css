@@ -82,10 +82,13 @@ a {
     background-color: #C25100;
 }
 
-.comment {
-    margin: auto; max-width: 100%; text-align: left;
+.comment-box {
+    margin: auto; max-width: 80%; text-align: left;
 }
 
+.comment {
+    margin: auto; max-width: 95%; text-align: left;
+}
 
 .ck-content {justify-content:center}
 

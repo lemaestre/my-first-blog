@@ -23,11 +23,21 @@
                     <a class="top-menu"  href="{% url 'post_new' %}"  >
                         Create {% include './icons/plus-square.svg' %}
                     </a>
-                    <a class="top-menu" href="{% url 'post_draft_list' %}" >
+                    <a class="top-menu" href="{% url 'draft_list' %}" >
                         Drafts {% include './icons/droplet-half.svg' %}
                     </a>
                 {% endif %}
                 <a class="top-menu" href="{% url 'category_list' %}"> Categories {% include './icons/grid.svg' %} </a>
+                <form class="top-menu" role="search" method="POST" action="{% url 'search-view'%}">
+                    {% csrf_token %}
+                    <input
+                       class="form-control"
+                       type="search"
+                       placeholder="Search"
+                       name="search_query"
+                       required aria-label="Search"
+                    >
+                   </form>
                 <h1><a href="/">Udag's Blog</a></h1>
             </div>
         </header>

@@ -4,12 +4,12 @@
     {% for post in posts %}
         <div class="post">
             <p class="date">created: {{ post.created_date|date:'d-m-Y' }}</p>
-            <h2><a href="{% url 'post_draft_detail' slug=post.slug %}">{{ post.title }}</a></h2>
+            <h2><a href="{% url 'draft_detail' slug=post.slug %}">{{ post.title }}</a></h2>
             <div class="card-body">
                 <!-- ck ck-content is ckeditor5 class -->
                 <div class="ck ck-content">
-                    {{post.text|safe|truncatewords:"100" }}
-                    <a href="{% url 'post_draft_detail' slug=post.slug %}"> See more</a>
+                    {{post.snippet|safe|truncatewords:"100" }}
+                    <a href="{% url 'draft_detail' slug=post.slug %}"> See more</a>
                 </div>
             </div>
             {% if post.published_date %}

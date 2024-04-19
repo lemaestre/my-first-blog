@@ -146,16 +146,16 @@ CKEDITOR_5_CONFIGS = {
     "default": {
         "toolbar": [
             "insertImage",
-            "imageTextAlternative",
             "mediaEmbed",
             "|",
-            "imageStyle:alignLeft",
-            "imageStyle:alignRight",
-            "imageStyle:alignCenter",
-            "imageStyle:side",
-            "|",
-            "toggleImageCaption",
+            "link",
+            "sourceEditing",
         ],
+        "htmlSupport": {
+            "allow": [
+                {"name": "/.*/", "attributes": True, "classes": True, "styles": True}
+            ]
+        },
         "image": {
         "toolbar": [
             "imageTextAlternative",

@@ -5,6 +5,7 @@ from .models import Post, Category
 from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 
 
 
@@ -27,7 +28,7 @@ def post_new(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('post_draft_detail', slug=post.slug)
+            return redirect('draft_detail', slug=post.slug)
     else:
         form = PostForm()
     return render(request, 'blog/post_new.html', {'form': form})
@@ -47,9 +48,9 @@ def post_edit(request, slug):
     return render(request, 'blog/post_edit.html', {'form': form})
 
 @login_required
-def post_draft_list(request):
+def draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('-created_date')
-    return render(request, 'blog/post_draft_list.html', {'posts': posts})
+    return render(request, 'blog/draft_list.html', {'posts': posts})
 
 @login_required
 def post_publish(request, slug):
@@ -61,19 +62,19 @@ def post_publish(request, slug):
 def post_remove(request, slug):
     post = get_object_or_404(Post, slug=slug)
     post.delete()
-    return redirect('post_draft_list')
+    return redirect('draft_list')
 
 @login_required
 def post_unpublish(request, slug):
     post = get_object_or_404(Post, slug=slug)
     post.published_date=None
     post.save()
-    return redirect('post_draft_list')
+    return redirect('draft_list')
 
 @login_required
-def post_draft_detail(request, slug):
+def draft_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    return render(request, 'blog/post_draft_detail.html', {'post': post})
+    return render(request, 'blog/draft_detail.html', {'post': post})
 
 @login_required
 def draft_edit(request, slug):
@@ -84,10 +85,10 @@ def draft_edit(request, slug):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('post_draft_detail', slug=post.slug)
+            return redirect('draft_detail', slug=post.slug)
     else:
         form = PostForm(instance=post)
-    return render(request, 'blog/post_draft_edit.html', {'form': form})
+    return render(request, 'blog/draft_edit.html', {'form': form})
 
 def category_posts(request, name):
     category = Category.objects.get(name=name)
@@ -97,3 +98,14 @@ def category_posts(request, name):
 def category_list(request):
     categories = Category.objects.all()
     return render(request, 'blog/category_list.html', {'categories':categories})
+
+def search_feature(request):
+    if request.method == 'POST':
+        # Retrieve the search query entered by the user
+        search_query = request.POST['search_query']
+        # Filter model by the search query
+        adminposts = Post.objects.filter(Q(title__icontains=search_query) | Q(text__icontains=search_query) | Q(snippet__icontains=search_query)).order_by('-created_date')
+        posts = Post.objects.filter(Q(title__icontains=search_query) | Q(text__icontains=search_query) | Q(snippet__icontains=search_query), published_date__lte=timezone.now()).order_by('-published_date') 
+        return render(request, 'blog/search_results.html', {'query':search_query, 'posts':posts, 'adminposts':adminposts})
+    else:
+        return render(request, 'blog/search_results.html',{})

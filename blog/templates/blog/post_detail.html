@@ -26,9 +26,9 @@
                 <img src="{{ post.head_image.url }}"> 
                 {{ post.head_image|safe }}
             {% else %}
-            <p style="margin-bottom:15px;"> </p>
+                <p style="margin-bottom:15px;"> </p>
             {% endif %}
-  
+            
                 {{ post.text|safe }}
             <br>
             {% if post.published_date %}
@@ -42,7 +42,7 @@
         </div>
     </article>
 
-    <div class="content">
+    <div class="comment-box">
         <hr>
         <!-- begin wwww.htmlcommentbox.com -->
         <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">HTML Comment Box</a> is loading comments...</div>
