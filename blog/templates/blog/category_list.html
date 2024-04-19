@@ -1,6 +1,6 @@
 {% extends 'blog/base.html' %}
-
 {% block content %}
+
     {% for category in categories %}
     <article class="post">
         <ul>
@@ -8,4 +8,5 @@
         </ul>
     </article>
     {% endfor %}
+    
 {% endblock %}

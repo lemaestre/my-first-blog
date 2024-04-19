@@ -1,6 +1,6 @@
 {% extends 'blog/base.html' %}
-
 {% block content %}
+
     {% for post in posts %}
         <article class="post">
             <time class="date">
@@ -9,9 +9,10 @@
             <h2><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></h2>
             
                 <div class="card-body">
-                        {{post.snippet|safe|truncatewords:"100" }}
+                        {{ post.snippet|safe|truncatewords:"100" }}
                         <a href="{% url 'post_detail' slug=post.slug %}"> See more</a>
                 </div>
         </article>
     {% endfor %}
+    
 {% endblock %}

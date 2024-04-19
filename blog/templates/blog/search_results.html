@@ -22,7 +22,7 @@
                 </time>
                 <h2><a href="{% url 'draft_detail' slug=i.slug %}">{{ i.title }}</a></h2>
                 <div class="card-body">
-                    {{i.snippet|safe|truncatewords:"100" }}
+                    {{ i.snippet|safe|truncatewords:"100" }}
                     <a href="{% url 'draft_detail' slug=i.slug %}"> See more</a>
                 </div>
             {% endif %}
@@ -47,6 +47,5 @@
         ... nothing found
     {% endfor %}    
 {% endif %}
-
 
 {% endblock %}
