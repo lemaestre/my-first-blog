@@ -2,8 +2,9 @@
 {% block content %}
 
     <h2>Edit post</h2>
-    <div class="container mt-5">
-        <form method="post" enctype="multipart/form-data"> 
+    <br>
+    <form method="post" enctype="multipart/form-data"> 
+        <div class="form-control">
             {% csrf_token %} 
             {{ form.media}}
             {% for field in form %}
@@ -11,11 +12,12 @@
                 <div><label for="{{ field.id_for_label }}" class="text-dark">{{ field.label }}: </label></div>
                 {{ field }}
             </div>
+            <p style="margin-bottom:10px;"></p>
             {% endfor %}
-            <div class="row justify-content-center">
-                <input type="submit" class="btn btn-info btn-lg" value="Save" />
-            </div>
-        </form>
-    </div>
+        </div>
+        <div>
+            <input type="submit" class="btn btn-info btn-lg" value="Save" />
+        </div>
+    </form>
     
 {% endblock %}

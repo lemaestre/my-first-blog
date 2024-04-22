@@ -90,8 +90,8 @@ def draft_edit(request, slug):
         form = PostForm(instance=post)
     return render(request, 'blog/draft_edit.html', {'form': form})
 
-def category_posts(request, name):
-    category = Category.objects.get(name=name)
+def category_posts(request, slug):
+    category = Category.objects.get(slug=slug)
     posts = Post.objects.filter(category=category, published_date__lte=timezone.now()).order_by('-published_date')  
     return render(request, 'blog/category_posts.html', {'posts':posts, 'category':category})
 

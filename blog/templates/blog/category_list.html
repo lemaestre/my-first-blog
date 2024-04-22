@@ -4,7 +4,7 @@
     {% for category in categories %}
     <article class="post">
         <ul>
-            <h2><a href="{% url 'category_posts' category.name %}">{{ category.name }} </a></h2>
+            <h2><a href="{% url 'category_posts' category.slug %}">{{ category.name }} </a></h2>
         </ul>
     </article>
     {% endfor %}

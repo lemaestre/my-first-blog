@@ -2,20 +2,22 @@
 {% block content %}
 
     <h2>New Post</h2>
-    <div class="container mt-5">
+    <br>
         <form method="post" enctype="multipart/form-data"> 
-            {% csrf_token %} 
-            {{ form.media }}
-            {% for field in form %}
-            <div class="form-group">
-                <div><label for="{{ field.id_for_label }}" class="text-dark">{{ field.label }}: </label></div>
-                {{ field }}
+            <div class="form-control">
+                {% csrf_token %} 
+                {{ form.media }}
+                {% for field in form %}
+                <div class="form-group">
+                    <div><label for="{{ field.id_for_label }}" class="text-dark">{{ field.label }}: </label></div>
+                    {{ field }}
+                </div>
+                <p style="margin-bottom:10px;"></p>
+                {% endfor %}
             </div>
-            {% endfor %}
             <div class="row content-center">
                 <input type="submit" class="btn btn-info btn-lg" value="Create" />
             </div>
         </form>
-    </div>
     
 {% endblock %}
