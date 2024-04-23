@@ -32,6 +32,7 @@
                     {{ post.text|safe }}
 
                 <br>
+                <p> {% for tag in post.tags.all %}&#35{{ tag }}{% if not forloop.last %} {% endif %}{% endfor %}</p>
 
                 {% if post.published_date %}
                     <div class="post-date">

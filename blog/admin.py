@@ -6,4 +6,4 @@ admin.site.register(Category)
 
 class PostModelAdmin(admin.ModelAdmin):
 
-    search_fields = ('title', 'text', 'snippet', 'category__name')
+    search_fields = ('title', 'text', 'snippet', 'category', 'tags')

@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<h3>Posts tagged &#35{{ tag }}</h3>
+<br>
+
+{% for i in posts %}
+    <article class="post">
+        <time class="date">
+            {{ i.published_date }}
+        </time>
+        <h2><a href="{% url 'post_detail' slug=i.slug %}">{{ i.title }}</a></h2>
+            <div class="card-body">
+                {{ i.snippet|safe|truncatewords:"100" }}
+                <a href="{% url 'post_detail' slug=i.slug %}"> See more</a>
+            </div>
+    </article>
+{% endfor %}    
+
+{% endblock %}

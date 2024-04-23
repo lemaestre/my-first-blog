@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 from django_ckeditor_5.fields import CKEditor5Field
+from taggit.managers import TaggableManager
 
 class Category(models.Model):
     name = models.CharField('Category', max_length=200)
@@ -20,6 +21,7 @@ class Post(models.Model):
     title = models.CharField('Title', max_length=200)
     head_image = CKEditor5Field('Cover Image', config_name='default', blank = True, null=True)
     text = CKEditor5Field('Body', config_name='extends')
+    tags = TaggableManager(blank=True)
     slug = models.SlugField(unique=True, null=True)
     snippet = models.TextField('Snippet', max_length=1000, blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
@@ -32,4 +34,3 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-    

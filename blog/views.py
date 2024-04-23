@@ -6,6 +6,7 @@ from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from taggit.models import Tag
 
 
 
@@ -25,7 +26,7 @@ def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            post = form.save(commit=False)
+            post = form.save()
             post.author = request.user
             post.save()
             return redirect('draft_detail', slug=post.slug)
@@ -39,7 +40,7 @@ def post_edit(request, slug):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
-            post = form.save(commit=False)
+            post = form.save()
             post.author = request.user
             post.save()
             return redirect('post_detail', slug=post.slug)
@@ -82,7 +83,7 @@ def draft_edit(request, slug):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
-            post = form.save(commit=False)
+            post = form.save()
             post.author = request.user
             post.save()
             return redirect('draft_detail', slug=post.slug)
@@ -104,8 +105,15 @@ def search_feature(request):
         # Retrieve the search query entered by the user
         search_query = request.POST['search_query']
         # Filter model by the search query
-        adminposts = Post.objects.filter(Q(title__icontains=search_query) | Q(text__icontains=search_query) | Q(snippet__icontains=search_query) | Q(category__name__icontains=search_query)).order_by('-created_date')
-        posts = Post.objects.filter(Q(title__icontains=search_query) | Q(text__icontains=search_query) | Q(snippet__icontains=search_query) | Q(category__name__icontains=search_query), published_date__lte=timezone.now()).order_by('-published_date') 
+        adminposts = Post.objects.filter(Q(title__icontains=search_query) | Q(text__icontains=search_query) | Q(snippet__icontains=search_query) | Q(category__name__icontains=search_query) | Q(tags__name__icontains=search_query)).order_by('-created_date')
+        posts = Post.objects.filter(Q(title__icontains=search_query) | Q(text__icontains=search_query) | Q(snippet__icontains=search_query) | Q(category__name__icontains=search_query) | Q(tags__name__icontains=search_query), published_date__lte=timezone.now()).order_by('-published_date') 
         return render(request, 'blog/search_results.html', {'query':search_query, 'posts':posts, 'adminposts':adminposts})
     else:
         return render(request, 'blog/search_results.html',{})
+
+def tagged(request, slug):
+    tag = get_object_or_404(Tag, slug=slug)
+    # Filter posts by tag name  
+    posts = Post.objects.filter(tags=tag, published_date__lte=timezone.now()).order_by('-published_date') 
+    context = {'tag':tag, 'posts':posts,}
+    return render(request, 'blog/tagged.html', context)

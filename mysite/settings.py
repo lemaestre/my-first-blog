@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django_ckeditor_5',
     'django_mathjax',
     'crispy_forms',
+    'taggit',
 ]
 
 MIDDLEWARE = [
