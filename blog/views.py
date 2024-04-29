@@ -105,9 +105,9 @@ def search_feature(request):
         # Retrieve the search query entered by the user
         search_query = request.POST['search_query']
         # Filter model by the search query
-        adminposts = Post.objects.filter(Q(title__icontains=search_query) | Q(text__icontains=search_query) | Q(snippet__icontains=search_query) | Q(category__name__icontains=search_query) | Q(tags__name__icontains=search_query)).order_by('-created_date').distinct()
+        allposts = Post.objects.filter(Q(title__icontains=search_query) | Q(text__icontains=search_query) | Q(snippet__icontains=search_query) | Q(category__name__icontains=search_query) | Q(tags__name__icontains=search_query)).order_by('-created_date').distinct()
         posts = Post.objects.filter(Q(title__icontains=search_query) | Q(text__icontains=search_query) | Q(snippet__icontains=search_query) | Q(category__name__icontains=search_query) | Q(tags__name__icontains=search_query), published_date__lte=timezone.now()).order_by('-published_date').distinct()
-        return render(request, 'blog/search_results.html', {'query':search_query, 'posts':posts, 'adminposts':adminposts})
+        return render(request, 'blog/search_results.html', {'query':search_query, 'liveposts':posts, 'adminposts':allposts})
     else:
         return render(request, 'blog/search_results.html',{})
 

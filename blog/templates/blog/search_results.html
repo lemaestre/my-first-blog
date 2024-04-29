@@ -32,10 +32,10 @@
     {% endfor %}
     
 {% else %}
-    {% for i in posts %}
+    {% for i in liveposts %}
         <article class="post">
             <time class="date">
-                {{ i.published_date }}
+                {{ i.published_date|date:"F d, Y" }}
             </time>
             <h2><a href="{% url 'post_detail' slug=i.slug %}">{{ i.title }}</a></h2>
                 <div class="card-body">
