@@ -1,18 +1,38 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 
-    {% for post in posts %}
-        <article class="post">
-            <time class="date">
-                {{ post.published_date|date:"F d, Y" }}
-            </time>
-            <h2><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></h2>
-            
-                <div class="card-body">
-                        {{ post.snippet|safe|truncatewords:"100" }}
-                        <a href="{% url 'post_detail' slug=post.slug %}"> See more</a>
-                </div>
-        </article>
-    {% endfor %}
-    
+{% for post in page_obj %}
+    <article class="post">
+        <time class="date">
+            {{ post.published_date|date:"F d, Y" }}
+        </time>
+        <h2><a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a></h2>
+            <div class="card-body">
+                {{ post.snippet|safe|truncatewords:"100" }}
+                <a href="{% url 'post_detail' slug=post.slug %}"> See more</a>
+            </div>
+    </article>
+{% endfor %}
+
+{% if is_paginated %}
+    <div class="container">
+        <div class="row">
+            <div class="text-center">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; &nbsp;</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous &nbsp;</a>
+            {% endif %}
+
+                {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} &nbsp;
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}"> &nbsp; &raquo;</a>
+            {% endif %}
+            </div>
+        </div>
+    </div>
+<br>
+{% endif %}
+
 {% endblock %}

@@ -1,5 +1,5 @@
 .page-header {
-    background-color: hsl(185, 53%, 42%);
+    background-color: hsl(322, 100%, 34%);
     margin-top: 0;
     margin-bottom: 40px;
     padding: 20px 20px 20px 40px;
@@ -107,5 +107,6 @@ a {
     min-width: 100%;
     height: auto;
 }
+
 
 #HCB_comment_box {max-width: 100%;margin: auto; margin-bottom: 0px;}
