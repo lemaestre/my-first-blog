@@ -8,11 +8,11 @@
             {% csrf_token %} 
             {{ form.media}}
             {% for field in form %}
-            <div class="form-group">
-                <div><label for="{{ field.id_for_label }}" class="text-dark">{{ field.label }}: </label></div>
-                {{ field }}
-            </div>
-            <p style="margin-bottom:10px;"></p>
+                <div class="form-group">
+                    <div><label for="{{ field.id_for_label }}" class="text-dark">{{ field.label }}: </label></div>
+                    {{ field }}
+                </div>
+                <p style="margin-bottom:10px;"></p>
             {% endfor %}
         </div>
         <div>

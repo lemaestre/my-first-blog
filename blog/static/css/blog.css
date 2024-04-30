@@ -117,7 +117,7 @@ a {
 .pagination > li > a
 {
     background-color: white;
-    color: #5A4181;
+    color: #5A4181;  
 }
 
 .pagination > li > a:focus,
@@ -133,12 +133,20 @@ a {
 .pagination > .active > a
 {
     color: white;
-    background-color: #ad006e !Important;
-    border: solid 1px #ad006e !Important;
+    background-color: #ad006e !important;
+    border: solid 1px #ad006e !important;
 }
 
-.pagination > .active > a:hover
+.pagination > .active > a:hover,
+.pagination > .active > a:focus
 {
-    background-color: #83307b !Important;
-    border: solid 1px #83307b;
+    background-color: #83307b !important;
+    border-color: solid 1px #83307b;
+}
+
+.pagination .page-item .page-link:focus
+{  
+    /* border: solid 2px #cb85b1; */
+    background-color: #ffe4f5;
+    box-shadow: 2px 2px 2px rgba(160, 159, 160, 0.53);
 }
