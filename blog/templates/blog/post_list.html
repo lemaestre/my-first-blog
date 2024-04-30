@@ -14,7 +14,7 @@
     </article>
 {% endfor %}
 
-{% if is_paginated %}
+
     <div class="container">
         <div class="row">
             <div class="text-center">
@@ -22,17 +22,18 @@
                 <a href="?page=1">&laquo; &nbsp;</a>
                 <a href="?page={{ page_obj.previous_page_number }}">previous &nbsp;</a>
             {% endif %}
-
-                {{ page_obj.number }} of {{ page_obj.paginator.num_pages }} &nbsp;
+            
+            {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
 
             {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">next</a>
+                <a href="?page={{ page_obj.next_page_number }}"> &nbsp; next</a>
                 <a href="?page={{ page_obj.paginator.num_pages }}"> &nbsp; &raquo;</a>
             {% endif %}
             </div>
         </div>
     </div>
+
 <br>
-{% endif %}
+
 
 {% endblock %}
