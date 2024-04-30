@@ -4,11 +4,15 @@
     <article class="post">
         <aside class="actions">
             {% if user.is_authenticated %}
-                <a class="btn btn-default" href="{% url 'draft_edit' slug=post.slug %}">
-                    {% include './icons/pencil-square.svg' %}
+                <a class="btn btn-outline-secondary" href="{% url 'draft_edit' slug=post.slug %}">
+                    <div class='d-flex justify-content-center'>
+                        {% include './icons/pencil-square.svg' %}
+                    </div>
                 </a>
-                <a class="btn btn-default" href="{% url 'post_remove' slug=post.slug %}">
-                    {% include './icons/trash3.svg' %}
+                <a class="btn btn-outline-danger" href="{% url 'post_remove' slug=post.slug %}">
+                    <div class='d-flex justify-content-center'>
+                        {% include './icons/trash3.svg' %}
+                    </div>
                 </a>
             {% endif %}
         </aside>
