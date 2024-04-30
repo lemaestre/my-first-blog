@@ -1,5 +1,5 @@
 .page-header {
-    background-color: hsl(322, 100%, 34%);
+    background-color: #ad006e;
     margin-top: 0;
     margin-bottom: 40px;
     padding: 20px 20px 20px 40px;
@@ -112,3 +112,33 @@ a {
 
 
 #HCB_comment_box {max-width: 100%;margin: auto; margin-bottom: 0px;}
+
+
+.pagination > li > a
+{
+    background-color: white;
+    color: #5A4181;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover
+{
+    color: #5a5a5a;
+    background-color: #eeeeeecc;
+    border-color: #ddd;
+}
+
+.pagination > .active > a
+{
+    color: white;
+    background-color: #ad006e !Important;
+    border: solid 1px #ad006e !Important;
+}
+
+.pagination > .active > a:hover
+{
+    background-color: #83307b !Important;
+    border: solid 1px #83307b;
+}
