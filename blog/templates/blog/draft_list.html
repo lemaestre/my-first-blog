@@ -1,25 +1,51 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 
-    {% for post in posts %}
-        <div class="post">
-            <p class="date">created: {{ post.created_date|date:'d-m-Y' }}</p>
-            <h2><a href="{% url 'draft_detail' slug=post.slug %}">{{ post.title }}</a></h2>
-            <div class="card-body">
-                <!-- ck ck-content is ckeditor5 class -->
-                <div class="ck ck-content">
-                    {{post.snippet|safe|truncatewords:"100" }}
-                    <a href="{% url 'draft_detail' slug=post.slug %}"> See more</a>
-                </div>
+{% for post in scheduled %}
+    <div class="post">
+        <p class="date">scheduled: {{ post.published_date|date:"d M Y, g:i A" }}</p>
+        <h2><a href="{% url 'draft_detail' slug=post.slug %}">{{ post.title }}</a></h2> 
+        <div class="card-body">
+            <!-- ck ck-content is ckeditor5 class -->
+            <div class="ck ck-content">
+                {{post.snippet|safe|truncatewords:"100" }}
+                <a href="{% url 'draft_detail' slug=post.slug %}"> See more</a>
             </div>
-            {% if post.published_date %}
-                <div class="date">
-                    {{ post.published_date }}
-                </div>
-            {% else %}
-                <a class="btn btn-info" href="{% url 'post_publish' slug=post.slug %}">Publish</a>
-            {% endif %}
         </div>
-    {% endfor %}
+        <div class="dropdown">
+            <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Scheduled
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'post_publish' slug=post.slug %}">Publish now</a>
+                <a class="dropdown-item" href="{% url 'draft_edit' slug=post.slug %}">Change schedule</a>
+                <a class="dropdown-item" href="{% url 'post_unpublish' slug=post.slug %}">Cancel schedule</a>
+            </div>
+        </div>   
+    </div>
+{% endfor %}
 
+{% for post in drafts %}
+    <div class="post">
+        <p class="date">created: {{ post.created_date|date:"d M Y"}}</p>
+        <h2><a href="{% url 'draft_detail' slug=post.slug %}">{{ post.title }}</a></h2>
+        <div class="card-body">
+            <!-- ck ck-content is ckeditor5 class -->
+            <div class="ck ck-content">
+                {{post.snippet|safe|truncatewords:"100" }}
+                <a href="{% url 'draft_detail' slug=post.slug %}"> See more</a>
+            </div>
+        </div>  
+        <div class="dropdown">
+            <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Publish
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="{% url 'post_publish' slug=post.slug %}">Now</a>
+                <a class="dropdown-item" href="{% url 'draft_edit' slug=post.slug %}">Schedule</a>
+            </div>
+        </div>   
+    </div>
+{% endfor %}
+    
 {% endblock %}

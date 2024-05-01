@@ -39,7 +39,7 @@
 
             {% if post.published_date %}
                 <div class="post-date">
-                    {{ post.published_date }}
+                    {{ post.published_date|date:"d M Y, g:i A" }}
                 </div>
             {% else %}
                 <a class="btn btn-info" href="{% url 'post_publish' slug=post.slug %}">Publish</a>

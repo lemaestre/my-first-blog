@@ -19,7 +19,5 @@ urlpatterns = [
     path('search', views.search_feature, name='search-view'),
     path('tag/<slug:slug>', views.tagged, name='tagged'),
 
-
-
 ]
 

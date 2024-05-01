@@ -9,11 +9,19 @@
                         {% include './icons/pencil-square.svg' %}
                     </div>
                 </a>
+                {% if post.published_date %}
+                <a class="btn btn-outline-info" href="{% url 'post_unpublish' slug=post.slug %}">
+                    <div class='d-flex justify-content-center'>
+                        {% include './icons/file-earmark-excel.svg' %}
+                    </div>
+                </a>
+                {% else %}
                 <a class="btn btn-outline-danger" href="{% url 'post_remove' slug=post.slug %}">
                     <div class='d-flex justify-content-center'>
                         {% include './icons/trash3.svg' %}
                     </div>
                 </a>
+                {% endif %}
             {% endif %}
         </aside>
 
@@ -39,11 +47,29 @@
                 <p> {% for tag in post.tags.all %}&#35{{ tag }}{% if not forloop.last %} {% endif %}{% endfor %}</p>
 
                 {% if post.published_date %}
-                    <div class="post-date">
-                        {{ post.published_date }}
+                <div class="post-date">
+                    {{ post.published_date|date:"d M Y, g:i A" }}
+                </div>
+                <div class="dropdown">
+                    <a class="btn btn-success dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Scheduled
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'post_publish' slug=post.slug %}">Publish now</a>
+                        <a class="dropdown-item" href="{% url 'draft_edit' slug=post.slug %}">Change schedule</a>
+                        <a class="dropdown-item" href="{% url 'post_unpublish' slug=post.slug %}">Cancel schedule</a>
                     </div>
+                </div>   
                 {% else %}
-                    <a class="btn btn-info" href="{% url 'post_publish' slug=post.slug %}">Publish</a>
+                <div class="dropdown">
+                    <a class="btn btn-info dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Publish
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'post_publish' slug=post.slug %}">Now</a>
+                        <a class="dropdown-item" href="{% url 'draft_edit' slug=post.slug %}">Schedule</a>
+                    </div>
+                </div>   
                 {% endif %}
                 
             </div>
