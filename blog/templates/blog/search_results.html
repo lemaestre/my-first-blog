@@ -3,11 +3,10 @@
 
 <h3>Search results for "{{ query }}"</h3>
 <br>
-
 {% if user.is_authenticated %}
-    {% for i in adminposts %}
+    {% for i in admin %}
         <article class="post">
-            {% if i.published_date %}
+            {% if not i.is_draft %}
                 <time class="date">
                     {{ i.published_date|date:"F d, Y" }}
                 </time>
@@ -19,6 +18,7 @@
             {% else %}
                 <time class="date">
                     in <a href="{% url 'draft_list' %}">Drafts</a>
+                    {% if i.published_date %}<br> scheduled {% endif %}
                 </time>
                 <h2><a href="{% url 'draft_detail' slug=i.slug %}">{{ i.title }}</a></h2>
                 <div class="card-body">
@@ -27,12 +27,12 @@
                 </div>
             {% endif %}
         </article>
-        {% empty %}
-        ... nothing found :&#40;
+    {% empty %}
+    ... nothing found :&#40;
     {% endfor %}
     
 {% else %}
-    {% for i in liveposts %}
+    {% for i in live %}
         <article class="post">
             <time class="date">
                 {{ i.published_date|date:"F d, Y" }}

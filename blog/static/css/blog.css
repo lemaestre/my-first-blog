@@ -72,6 +72,8 @@ a {
     float: right; max-width: 75%; margin:auto;
 }
 
+time.date {text-align: right;}
+
 .btn-secondary,
 .btn-secondary:visited {
     color: #C25100;

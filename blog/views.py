@@ -10,18 +10,18 @@ from django.core.paginator import Paginator
 
 
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    posts = Post.published()
     paginator = Paginator(posts, 3)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
-    return render(request, 'blog/post_list.html', {'page_obj': page_obj, 'posts':posts})
+    return render(request, 'blog/post_list.html', {'page_obj': page_obj})
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
     return render(request, 'blog/post_detail.html', {'post': post})
 
 @login_required
-def post_new(request):
+def create(request):
     if request.method == "POST":
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
@@ -31,7 +31,7 @@ def post_new(request):
             return redirect('draft_detail', slug=post.slug)
     else:
         form = PostForm()
-    return render(request, 'blog/post_new.html', {'form': form})
+    return render(request, 'blog/create.html', {'form': form})
 
 @login_required
 def post_edit(request, slug):
@@ -49,9 +49,8 @@ def post_edit(request, slug):
 
 @login_required
 def draft_list(request):
-    drafts = Post.objects.filter(published_date__isnull=True).order_by('-created_date')
-    scheduledposts = Post.objects.exclude(Q(published_date__lte=timezone.now()) | Q(published_date__isnull=True))
-    return render(request, 'blog/draft_list.html', {'drafts': drafts,'scheduled':scheduledposts})
+    drafts = (Post.draft() | Post.scheduled()).order_by('-created_date')
+    return render(request, 'blog/draft_list.html', {'drafts': drafts})
 
 @login_required
 def post_publish(request, slug):
@@ -68,8 +67,7 @@ def post_remove(request, slug):
 @login_required
 def post_unpublish(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    post.published_date=None
-    post.save()
+    post.unpublish()
     return redirect('draft_list')
 
 @login_required
@@ -93,8 +91,9 @@ def draft_edit(request, slug):
 
 def category_posts(request, slug):
     category = Category.objects.get(slug=slug)
-    posts = Post.objects.filter(category=category, published_date__lte=timezone.now()).order_by('-published_date')  
-    return render(request, 'blog/category_posts.html', {'posts':posts, 'category':category})
+    posts = Post.objects.filter(category=category) & Post.published()
+    context = {'posts':posts, 'category':category}
+    return render(request, 'blog/category_posts.html', context)
 
 def category_list(request):
     categories = Category.objects.all()
@@ -102,20 +101,17 @@ def category_list(request):
 
 def search_feature(request):
     if request.method == 'POST':
-        # Retrieve the search query entered by the user
         search_query = request.POST['search_query']
-        # Filter model by the search query
         allposts = Post.objects.filter(Q(title__icontains=search_query) | Q(text__icontains=search_query) | Q(snippet__icontains=search_query) | Q(category__name__icontains=search_query) | Q(tags__name__icontains=search_query)).order_by('-created_date').distinct()
-        posts = Post.objects.filter(Q(title__icontains=search_query) | Q(text__icontains=search_query) | Q(snippet__icontains=search_query) | Q(category__name__icontains=search_query) | Q(tags__name__icontains=search_query), published_date__lte=timezone.now()).order_by('-published_date').distinct()
-        return render(request, 'blog/search_results.html', {'query':search_query, 'liveposts':posts, 'adminposts':allposts})
+        liveposts = Post.objects.filter(Q(title__icontains=search_query) | Q(text__icontains=search_query) | Q(snippet__icontains=search_query) | Q(category__name__icontains=search_query) | Q(tags__name__icontains=search_query), published_date__lte=timezone.now()).distinct()
+        context = {'query':search_query, 'live':liveposts, 'admin':allposts}
+        return render(request, 'blog/search_results.html', context)
     else:
         return render(request, 'blog/search_results.html',{})
 
 def tagged(request, slug):
-    tag = get_object_or_404(Tag, slug=slug)
-    # Filter posts by tag name  
-    posts = Post.objects.filter(tags=tag, published_date__lte=timezone.now()).order_by('-published_date') 
+    tag = get_object_or_404(Tag, slug=slug) 
+    posts = Post.objects.filter(tags=tag) & Post.published()
     context = {'tag':tag, 'posts':posts,}
     return render(request, 'blog/tagged.html', context)
  
-

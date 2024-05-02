@@ -28,7 +28,6 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
 
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -152,6 +151,8 @@ CKEDITOR_5_CONFIGS = {
             "link",
             "sourceEditing",
         ],
+        "height": "100",
+        "width": "300",
         "htmlSupport": {
             "allow": [
                 {"name": "/.*/", "attributes": True, "classes": True, "styles": True}
@@ -177,7 +178,7 @@ CKEDITOR_5_CONFIGS = {
             "alignCenter",
         ],
         },
-  
+
     },
     "comment": {
         "language": {"ui": "en", "content": "en"},

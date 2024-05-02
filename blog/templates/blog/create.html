@@ -1,23 +1,22 @@
 {% extends 'blog/base.html' %}
 {% block content %}
 
-    <h2>Edit draft</h2>
-
-    <br>
+<h2>New Post</h2>
+<br>
     <form method="post" enctype="multipart/form-data"> 
         <div class="form-control">
             {% csrf_token %} 
-            {{ form.media}}
+            {{ form.media }}
             {% for field in form %}
                 <div class="form-group">
                     <div><label for="{{ field.id_for_label }}" class="text-dark">{{ field.label }}: </label></div>
-                    {{ field }}
-                </div>
+                        {{ field }}
+                    </div>
                 <p style="margin-bottom:10px;"></p>
             {% endfor %}
         </div>
-        <div>
-            <input type="submit" class="btn btn-info btn-lg" value="Save" />
+        <div class="row content-center">
+            <input type="submit" class="btn btn-info btn-lg" value="Create" />
         </div>
     </form>
     
