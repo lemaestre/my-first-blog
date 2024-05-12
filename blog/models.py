@@ -57,7 +57,7 @@ class Post(models.Model):
     def scheduled(cls):
         return cls.objects.exclude(Q (published_date__lte=timezone.now()) | Q(published_date__isnull=True))
     
-    @property #per one object access
+    @property #per one object access in template
     def is_draft(self):
         return self.published_date > timezone.now() or self.published_date==None
     

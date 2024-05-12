@@ -90,6 +90,8 @@ time.date {text-align: right;}
     margin: auto; max-width: 80%; text-align: left;
 }
 
+#HCB_comment_box {max-width: 100%;margin: auto; margin-bottom: 0px;}
+
 .comment {
     margin: auto; max-width: 95%; text-align: left;
 }
@@ -111,9 +113,6 @@ time.date {text-align: right;}
     min-width: 100%;
     height: auto;
 }
-
-
-#HCB_comment_box {max-width: 100%;margin: auto; margin-bottom: 0px;}
 
 
 .pagination > li > a
@@ -153,4 +152,30 @@ time.date {text-align: right;}
     box-shadow: 2px 2px 2px rgba(160, 159, 160, 0.53);
 }
 
-.dropdown-item:focus{background-color: #d7d8d8 !important; color: #3e3e3e !important}
+.dropdown-item:focus{background-color: #d7d8d8 !important; color: #303030 !important}
+
+.search-hover {
+    border: 1px solid #cccccc00;
+    outline: none;
+    background-color: #ad006e;
+    background-size: 22px;
+    background-position: 13px;
+    border-radius: 10px;
+    width: 30px;
+    height: 30px;
+    padding: 17px;
+    transition: all 0.5s;
+  }
+  .search-hover:hover {
+    width: 125px;
+    padding-left: 15px;
+  }
+
+  input.search-hover.form-control-sm {color: #ffffff;} 
+
+  ::placeholder {
+    color: rgb(255, 255, 255);
+  }
+
+
+  

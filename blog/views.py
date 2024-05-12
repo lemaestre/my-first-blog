@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from taggit.models import Tag
 from django.core.paginator import Paginator
+from django.views.generic.list import ListView
 
 
 
@@ -114,4 +115,3 @@ def tagged(request, slug):
     posts = Post.objects.filter(tags=tag) & Post.published()
     context = {'tag':tag, 'posts':posts,}
     return render(request, 'blog/tagged.html', context)
- 
