@@ -164,7 +164,7 @@ time.date {text-align: right;}
     width: 30px;
     height: 30px;
     padding: 17px;
-    transition: all 0.4s;
+    transition: all 0.5s;
   }
   .search-hover:hover {
     width: 125px;
