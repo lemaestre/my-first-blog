@@ -164,11 +164,12 @@ time.date {text-align: right;}
     width: 30px;
     height: 30px;
     padding: 17px;
-    transition: all 0.5s;
+    transition: all 0.4s;
   }
   .search-hover:hover {
     width: 125px;
     padding-left: 15px;
+    background-color: #ad006e;
   }
 
   input.search-hover.form-control-sm {color: #ffffff;} 
