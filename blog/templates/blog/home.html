@@ -1,0 +1,49 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+
+<h2>Recent Posts</h2>
+<br>
+
+{% for i in recent %}
+    <article class="post">
+        <time class="date">
+            {{ i.published_date|date:"d M Y"  }}
+        </time>
+        <h2><a href="{% url 'post_detail' slug=i.slug %}">{{ i.title }}</a></h2>
+            <div class="card-body">
+                {{ i.snippet|safe|truncatewords:"100" }}
+                <a href="{% url 'post_detail' slug=i.slug %}"> See more</a>
+            </div>
+    </article>
+{% endfor %}
+
+<div class="more-posts">
+    <a class="btn btn-outline-secondary" href="{% url 'post_list' %}"> More &#xbb; </a>
+</div>
+
+<br>
+<br>
+
+<h2>Categories</h2>
+<br>
+{% for i in categories %}
+    <article class="post"> 
+        <ul>
+            <h2><a href="{% url 'category_posts' i.slug %}">{{ i.name }} </a></h2>
+        </ul>
+    </article>
+{% endfor %}
+
+<br>
+
+<h2>Playlist</h2>
+<br>
+<div align="center">
+    <iframe style="border-radius:12px" 
+    src="https://open.spotify.com/embed/playlist/4Oh9bn713SJfn4fAaovKWe?utm_source=generator" 
+    width="95%" height="550" frameBorder="0" allowfullscreen="" 
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</div>
+<br>
+
+{% endblock %}

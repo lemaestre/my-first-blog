@@ -9,6 +9,8 @@ from django.db.models import Q
 
 class Category(models.Model):
     name = models.CharField('Category', max_length=200)
+    cover = CKEditor5Field('Cover Image', config_name='default', blank = True, null=True)
+    intro = models.TextField('Intro', max_length=1000, blank=True, null=True)
     slug = models.SlugField(unique=True)
 
     def __str__(self):
@@ -26,6 +28,7 @@ class Post(models.Model):
     text = CKEditor5Field('Body', config_name='extends')
     tags = TaggableManager(blank=True)
     slug = models.SlugField(unique=True, null=True)
+    thumbnail = CKEditor5Field('Thumbnail', config_name='default', blank = True, null=True)
     snippet = models.TextField('Snippet', max_length=1000, blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField('Publish date', blank=True, null=True)

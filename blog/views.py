@@ -10,9 +10,15 @@ from django.views.generic.list import ListView
 
 
 
+def home(request):
+    recent = Post.published()[0:4]
+    categories = Category.objects.all()
+    context = {'recent':recent,'categories':categories}
+    return render (request, 'blog/home.html',context)
+
 def post_list(request):
     posts = Post.published()
-    paginator = Paginator(posts, 3)
+    paginator = Paginator(posts, 4)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
     return render(request, 'blog/post_list.html', {'page_obj': page_obj})

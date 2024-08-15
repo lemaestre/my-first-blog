@@ -44,7 +44,13 @@
                         placeholder="Search"
                         name="search_query"
                         required aria-label="Search"
-                    > <label class="button searchbutton" for="searchright"> <span> {% include './icons/search.svg' %} </span></label> 
+                    > 
+                    <label class="button searchbutton" for="searchright"> 
+                    <button 
+                        type="submit" 
+                        style="background-color:#ad006e; border:#ad006e; color:#ffffff"> 
+                        <span>{% include './icons/search.svg' %} </span>
+                    </button></label> 
                 </form>
 
 
@@ -52,8 +58,9 @@
                     <a class="top-menu"  href="{% url 'new_post' %}"  > Create {% include './icons/plus-square.svg' %}</a>
                     <a class="top-menu" href="{% url 'draft_list' %}" > Drafts {% include './icons/droplet-half.svg' %}</a>
                 {% endif %}
-                
                     <a class="top-menu" href="{% url 'category_list' %}"> Categories {% include './icons/grid.svg' %} </a>
+                    <a class="top-menu" href="{% url 'post_list' %}"> Posts {% include './icons/file-earmark.svg' %}</a>
+                    
 
                 <h1><a href="/">Udag's Blog</a></h1>
             </div>
